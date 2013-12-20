@@ -1,0 +1,78 @@
+function eraseText()
+{
+    document.getElementById("inputtext").value="";
+};
+
+
+
+
+$(document).ready(
+function() { 
+	$("#submitbutton").click( function (){
+	$.post("../add", { "text" : document.getElementById("inputtext").value},
+			function(data)
+			{	alert(data);
+				data = JSON.parse(data)
+				var temp = "";
+				for (item in data.text)
+				{
+				    temp = temp + data.text[item] + ',';
+				}
+				alert(temp);
+				$("#outputtext").text(temp);
+			});
+
+	});
+});
+
+
+/*
+$("#subitbutton").click(function(){
+  alert (document.getElementById("inputtext").value);
+  $.post("../add", { "text" : document.getElementById("inputtext").value }, function(data,status){
+	alert ("Posted!2"+data);
+	
+  });
+});
+
+
+
+
+function post_to_url(path, params, method) {
+    method = method || "post"; // Set method to post by default if not specified.
+
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+            form.appendChild(hiddenField);
+         }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+	alert("Form submitted");
+}
+
+
+
+$(function () {
+$("#sub").click(
+function()
+{
+ try{   
+    var el = $('#i1').val();
+	alert(el);
+ }
+ catch(ex){alert(ex);}
+ 
+}
+);  
+});
+*/
